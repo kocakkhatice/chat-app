@@ -1,23 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
-
+import {io} from 'socket.io-client';
+import {useEffect, useState} from 'react';
+import TimeAgo from 'react-timeago'
 function App() {
+  const[logs, setLogs] = useState([]);
+  
+  useEffect(()=> {
+    const socket = io("http://localhost:3000", {transports: ["websocket"]});
+    socket.on('welcome', () => console.log("welcome"))
+
+    socket.on('new-user', ({title, joinDate}) => {
+      console.log(joinDate)
+       setLogs((p) => [...p, {title, joinDate}])
+    })
+  },[]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     
+       
+      {
+        logs.map((item, key) =>
+            <div key = {key}> 
+                  {item.title} - <TimeAgo date= {item.joinDate}/>
+              </div>
+          
+          )
+      }
+     
     </div>
   );
 }
