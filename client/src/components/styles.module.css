@@ -1,0 +1,13 @@
+.chatList{
+    border: 1px solid #fff;
+    padding: 10px;
+    height: 300px;
+    width: 100%;
+    margin: 40px auto 0 auto;
+    background-color: cornsilk;
+}
+.textInput{
+    border: 1px solid gray;
+    width: 100%;
+    padding: 10px;
+ }
