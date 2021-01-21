@@ -7,4 +7,6 @@ export const initSocket = () => {
     console.log('Connecting...');
     socket.on('connect', () => console.log('Connected'));
 }
-
+export const sendMessage = (message) => {
+    if (socket) socket.emit('new-message', message)
+}

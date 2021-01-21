@@ -9,3 +9,4 @@ export const ChatProvider = ({children}) =>{
     }
     return <ChatContext.Provider value={values}> {children}</ChatContext.Provider>
 }
+export default ChatContext;

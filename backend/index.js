@@ -15,6 +15,9 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("new-user", {title: "a user joined", joinDate: new Date()})
 
     socket.on("disconnect", () => console.log("a user disconnected"));
+    socket.on("new-message", (message) => {
+        console.log(message);
+    })
 });
 
 http.listen(3000, () => {
